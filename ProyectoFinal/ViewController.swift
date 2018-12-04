@@ -10,18 +10,17 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var search: UITextField!
     
+    @IBOutlet weak var location: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
-    @IBAction func aDocmicilio(_ sender: UISwitch) {
-        if(sender.isOn){
-            
-        }else{
-            
-        }
+    
+    @IBAction func buscar(_ sender: UIButton) {
+        let con = LugarConexion(search: search.text ?? "torta", location: location.text ?? "Mexico", withDelivery: true)
+        con.toDo()
     }
     
 }
