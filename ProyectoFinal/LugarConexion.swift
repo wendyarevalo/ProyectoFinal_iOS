@@ -16,6 +16,7 @@ class LugarConexion{
     
     init(search : String, location : String, withDelivery : Bool) {
         url = "https://api.yelp.com/v3/businesses/search?term=\(search)&location=\(location)"
+        self.withDelivery = withDelivery
     }
     func toDo(){
         let session = URLSession.shared
@@ -50,6 +51,10 @@ class LugarConexion{
                 let transData = try JSONSerialization.data(withJSONObject: venue["transactions"]!, options: [])
                 let transaction = try JSONSerialization.jsonObject(with: transData, options: []) as! Array<AnyObject>
                 print(transaction)
+                
+                if(self.withDelivery && transaction.count > 0){
+                    
+                }
                 
             } catch {
                 print("Could not parse data as Json \(error)")
