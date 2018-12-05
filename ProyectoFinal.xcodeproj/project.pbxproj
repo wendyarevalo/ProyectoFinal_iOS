@@ -14,6 +14,7 @@
 		2F462E5121B4DF7C00365B33 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F462E4F21B4DF7C00365B33 /* LaunchScreen.storyboard */; };
 		2FAE452521B606EB004F3201 /* Lugar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAE452421B606EB004F3201 /* Lugar.swift */; };
 		2FAE452721B609A3004F3201 /* LugarConexion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAE452621B609A3004F3201 /* LugarConexion.swift */; };
+		2FEEE98021B773F900289542 /* img in Resources */ = {isa = PBXBuildFile; fileRef = 2FEEE97F21B773F900289542 /* img */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		2F462E5221B4DF7C00365B33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2FAE452421B606EB004F3201 /* Lugar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lugar.swift; sourceTree = "<group>"; };
 		2FAE452621B609A3004F3201 /* LugarConexion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LugarConexion.swift; sourceTree = "<group>"; };
+		2FEEE97F21B773F900289542 /* img */ = {isa = PBXFileReference; lastKnownFileType = folder; name = img; path = ProyectoFinal/img; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		2F462E4521B4DF7A00365B33 /* ProyectoFinal */ = {
 			isa = PBXGroup;
 			children = (
+				2FEEE97F21B773F900289542 /* img */,
 				2F462E4621B4DF7A00365B33 /* AppDelegate.swift */,
 				2F462E4821B4DF7A00365B33 /* ViewController.swift */,
 				2F462E4A21B4DF7A00365B33 /* Main.storyboard */,
@@ -128,6 +131,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FEEE98021B773F900289542 /* img in Resources */,
 				2F462E5121B4DF7C00365B33 /* LaunchScreen.storyboard in Resources */,
 				2F462E4E21B4DF7C00365B33 /* Assets.xcassets in Resources */,
 				2F462E4C21B4DF7A00365B33 /* Main.storyboard in Resources */,
