@@ -17,34 +17,48 @@ class LugaresTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NotificationCenter.default.addObserver(self, selector: #selector(lugaresResult(notification:)), name: NSNotification.Name(rawValue: "LugaresRetrieve"), object: nil)
         
         let con = LugarConexion(search: search!, location: location!, withDelivery: true)
         con.toDo()
         
         
     }
+    
+    @objc private func lugaresResult(notification : Notification){
+        if let places = notification.userInfo!["lugares"]{
+            arrayLugares = places as! Array<Lugar>
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return arrayLugares.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "restauranteCell", for: indexPath)
 
-        // Configure the cell...
+        cell.textLabel?.text = arrayLugares[indexPath.row].name!
+        
+        let dis = "Distancia: \(String(format: "%.3f", arrayLugares[indexPath.row].distance!)) m"
+        cell.detailTextLabel?.text = dis
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -81,14 +95,23 @@ class LugaresTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "detailSegue" {
+            let detalleLugar = segue.destination as! DetalleViewController
+            
+            if let index = tableView.indexPathForSelectedRow?.row {
+                detalleLugar.miLugar = arrayLugares[index]
+            } else {
+                return
+            }
+        }
+        
     }
-    */
 
 }

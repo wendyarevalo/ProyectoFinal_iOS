@@ -8,15 +8,19 @@
 
 import Foundation
 class Lugar{
-    var id : String?
     var name : String?
-    var imgURL : String?
+    var img : String?
+    var phone : String?
+    var rating : Double?
+    var distance : Double?
     var delivery : Bool?
     
-    init(id : String, name : String, imgURL : String, delivery : Bool) {
-        self.id = id
+    init(name : String, img : String, phone : String, rating : Double, distance : Double, delivery : Bool) {
         self.name = name
-        self.imgURL = imgURL
+        self.img = img
+        self.phone = phone
+        self.rating = rating
+        self.distance = distance
         self.delivery = delivery
     }
 }

@@ -11,7 +11,7 @@ import Foundation
 class LugarConexion{
     var url = ""
     var apiKey = "i-Rr3a5BonCE9qw8GrzbiMqbynL0OHVlKJBCemIymDOHAJZy75q8CzeEMWkvfF9IajoVVwrGsTuO9EqmqDBTOf87CtOvavSqSUE7xTIlGS2K4DddFN4LQw2MMK8EXHYx"
-    //var lugares = [Lugar]()
+    var lugares = [Lugar]()
     var withDelivery = false
     
     init(search : String, location : String, withDelivery : Bool) {
@@ -40,7 +40,45 @@ class LugarConexion{
                 let venues = try JSONSerialization.jsonObject(with: venuesData, options: []) as! Array<AnyObject>
                 //print(venues)
                 
-                let venueData = try JSONSerialization.data(withJSONObject: venues[0], options: [])
+                for lugar in venues{
+                    if let lugarName = lugar["name"]{
+                        if let lugarImg = lugar["image_url"]{
+                            if let lugarRating = lugar["rating"]{
+                                if let lugarPhone = lugar["phone"]{
+                                    if let lugarDistance = lugar["distance"]{
+                                        
+                                        let name = lugarName as! String
+                                        let img = lugarImg as! String
+                                        let rating = lugarRating as! Double
+                                        let phone = lugarPhone as! String
+                                        let distance = lugarDistance as! Double
+                                        
+                                        let lugar = Lugar(name: name, img: img, phone: phone, rating: rating, distance: distance, delivery: true)
+                                        
+                                        self.lugares.append(lugar)
+                                        
+                                    }else{
+                                        print("lugar sin distancia")
+                                    }
+                                }else{
+                                    print("lugar sin telefono")
+                                }
+                            }else{
+                                print("lugar sin rankear")
+                            }
+                        }else{
+                            print("lugar sin una imagen")
+                        }
+                    }else{
+                        print("lugar sin nombre")
+                    }
+                }
+                
+                if self.lugares.count > 0{
+                    NotificationCenter.default.post(name: Notification.Name("LugaresRetrieve"), object: nil, userInfo: ["lugares":self.lugares])
+                }
+                
+                /*let venueData = try JSONSerialization.data(withJSONObject: venues[0], options: [])
                 let venue = try JSONSerialization.jsonObject(with: venueData, options: []) as! [String:Any]
                 //print(venue)
                 
@@ -54,7 +92,7 @@ class LugarConexion{
                 
                 if(self.withDelivery && transaction.count > 0){
                     
-                }
+                }*/
                 
             } catch {
                 print("Could not parse data as Json \(error)")
